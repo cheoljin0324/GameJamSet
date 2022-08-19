@@ -9,6 +9,7 @@ public class JewelryManager : MonoSingleton<JewelryManager>
     public int[] haveJewelry = new int[9];
     private string[] nameData = { "Metal", "Copper", "Gold", "Coral", "Silver", "MOP", "Pearl", "Lazurite", "Turquoise" };
     public int left = 30;
+    public bool OnPreparing = true;
     private List<Value> values = new List<Value>();
     public List<TextMeshProUGUI> countTMP = new List<TextMeshProUGUI>();
 
@@ -39,5 +40,6 @@ public class JewelryManager : MonoSingleton<JewelryManager>
         {
             haveJewelry[i] = values[i].foo1;
         }
+        OnPreparing = false;
     }
 }
