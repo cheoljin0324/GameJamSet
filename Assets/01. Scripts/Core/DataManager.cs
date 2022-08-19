@@ -1,26 +1,23 @@
-using System.Threading;
-using System.Threading.Tasks;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
-using System;
 
 namespace Core
 {
-    [Serializable]
     public class UserData
     {
         [JsonProperty("fame")] public int fame;
         [JsonProperty("day")] public int day;
         [JsonProperty("money")] public int money;
+        [JsonProperty("coolTimes")] public float[] coolTimes;
 
-        public UserData(int fame, int day, int money)
+        public UserData(int fame, int day, int money, float[] coolTimes)
         {
             this.fame = fame;
             this.day = day;
             this.money = money;
+            this.coolTimes = coolTimes;
         }
     }
     public class DataManager : MonoSingleton<DataManager>
@@ -29,7 +26,7 @@ namespace Core
         private string TPath = "Assets/08. JSON/result.json";
         private UserData userData;
         public UserData UserData => userData;
-        private Dictionary<string, string> texts;
+        public Dictionary<string, string> Texts;
 
         private void Awake()
         {
@@ -40,13 +37,10 @@ namespace Core
             }
             else
             {
-                userData = new UserData(0, 1, 0);
+                userData = new UserData(0, 1, 0, new float[] {1, 1, 1});
             }
             if(File.Exists(TPath))
-                texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));
-
-            Debug.Log(texts.Count);
-
+                Texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));
         }
         private void OnApplicationQuit()
         {

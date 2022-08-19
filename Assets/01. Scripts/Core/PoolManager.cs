@@ -11,7 +11,8 @@ namespace Core
 
         private void Awake()
         {
-            Initialize();
+            Initialize(true);
+
             parent = transform.GetChild(0);
             foreach (PoolableMono p in poolingList)
                 CreatePool(p, parent);
