@@ -14,8 +14,7 @@ public class Gobuttonscrip : MonoBehaviour
     {
         btn = this.GetComponent<Button>();
         obj = GameObject.Find("LeftObj");
-        btn.onClick.AddListener(obj.GetComponent<Nodestroy>().GameGo);
-
+        //btn.onClick.AddListener(obj.GetComponent<JewelryManager>().GameGo);
     }
 
     // Update is called once per frame
