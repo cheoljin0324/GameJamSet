@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,8 +26,10 @@ namespace Core
     public class DataManager : MonoSingleton<DataManager>
     {
         private string path = "Assets/08. JSON/userData.json";
+        private string TPath = "Assets/08. JSON/result.json";
         private UserData userData;
         public UserData UserData => userData;
+        private Dictionary<string, string> texts;
 
         private void Awake()
         {
@@ -38,6 +42,11 @@ namespace Core
             {
                 userData = new UserData(0, 1, 0);
             }
+            if(File.Exists(TPath))
+                texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));
+
+            Debug.Log(texts.Count);
+
         }
         private void OnApplicationQuit()
         {
