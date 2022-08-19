@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace kwak1s1h
-{
     public class PlayerJewelry : MonoBehaviour
     {
         [SerializeField] private int[] haveJewelry = new int[9];
@@ -19,4 +15,3 @@ namespace kwak1s1h
             return haveJewelry[Array.IndexOf(nameData, name)];
         }
     }
-}

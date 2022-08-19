@@ -2700,7 +2700,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906837420}
-  - component: {fileID: 906837422}
   - component: {fileID: 906837421}
   m_Layer: 5
   m_Name: Jewelries
@@ -2751,18 +2750,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   haveJewelry: 010000000200000003000000040000000500000006000000070000000800000009000000
---- !u!114 &906837422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906837419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ff253051d4b0441987a96572bc47e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &910383215
 GameObject:
   m_ObjectHideFlags: 0

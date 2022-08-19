@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SEH00N
-{
     public class Processing : MonoBehaviour
     {
         private int[] state = { 0, 0, 0 };
@@ -19,5 +17,9 @@ namespace SEH00N
             state[Index]++;
             button.interactable = false;
         }
+
+        public int SendOutState(int index)
+        {
+            return state[index];
+        }
     }
-}

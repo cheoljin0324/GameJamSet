@@ -2,8 +2,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace SEH00N
-{
     public class Processor : MonoBehaviour
     {
         private List<Processing> processingList = new List<Processing>();
@@ -18,5 +16,17 @@ namespace SEH00N
             foreach(Processing p in processingList)
                 p.Index = index;
         }
+
+        private void Update()
+        {
+            if(Input.GetButtonDown("Jump"))
+                CompleteOrder();
+        }
+
+        public void CompleteOrder()
+        {
+            foreach(Processing p in processingList)
+                for (int i = 0; i < 3; i++)
+                    OrderManager.Instance.Submit += p.SendOutState(i);
+        }
     }
-}
