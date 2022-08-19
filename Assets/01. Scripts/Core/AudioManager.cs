@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace Core
 {
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : MonoSingleton<AudioManager>
     {
-        public static AudioManager Instance = null;
-
         [SerializeField] AudioSource bgmSource, effectSource = null;
         public AudioSource BGMSource => bgmSource;
         public AudioSource EffectSource => effectSource;
@@ -16,8 +14,7 @@ namespace Core
 
         private void Awake()
         {
-            if(Instance != null) { Debug.Log($"Multiple AudioManager Instance is Running, Destroy This"); Destroy(gameObject); }
-            if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+            Initialize();
 
             bV = PlayerPrefs.GetFloat("BGM", 0.5f);
             eV = PlayerPrefs.GetFloat("EFFECT", 0.5f); 
