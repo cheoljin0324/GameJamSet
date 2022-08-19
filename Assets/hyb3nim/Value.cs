@@ -4,40 +4,46 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Value : MonoBehaviour
 {
-    int left=30; //광물 개수 제한
+    [SerializeField]
+    GameObject nodestroy;
+
     int foo1=0; //얻는 광물 개수
-    public Text txtvalue; //value 표시용
-    public Text txtLeft; //left 표시용
-    [SerializeField] Button btn1;
-    [SerializeField] Button btn2;
+    [SerializeField] Text txtvalue; //value 표시용
+    [SerializeField] Text txtLeft; //left 표시용
+    [SerializeField] Button btn1; //+
+    [SerializeField] Button btn2; //-
     void Start(){
-        txtvalue=transform.GetChild(2).GetComponent<Text>();
-        btn1=transform.GetChild(0).GetComponent<Button>();
-        btn2=transform.GetChild(1).GetComponent<Button>();
-        txtLeft=GameObject.Find("valueLeft").GetComponent<Text>();
+        nodestroy=GameObject.Find("LeftObj");
+
+        btn1=transform.GetChild(1).GetComponent<Button>();
+        btn2=transform.GetChild(2).GetComponent<Button>();
+
         btn1.onClick.AddListener(buttonPlus);
         btn2.onClick.AddListener(buttonMinus);
-        txtvalue.text=foo1.ToString();
-        txtLeft.text=left.ToString()+"Left";
+
+        txtvalue=transform.GetChild(3).GetComponent<Text>();
+        txtLeft=GameObject.Find("valueLeft").GetComponent<Text>();
+
+        txtupdate();
+
+        
     }
-    public void buttonPlus(){
-        if(left!=0){
-            left--;
+    public void buttonPlus(){ //개수 더하기
+        if(nodestroy.GetComponent<Nodestroy>().left!=0){
+            nodestroy.GetComponent<Nodestroy>().left--;
             foo1++;
-            Debug.Log("더함");
-            txtvalue.text=foo1.ToString();
-            txtLeft.text=left.ToString()+" Left";
+            txtupdate();
             }
-        else Debug.Log("안더함");
     }
-    public void buttonMinus(){
+    public void buttonMinus(){ //개수 빼기
     if(foo1>0){
-        left++;
+        nodestroy.GetComponent<Nodestroy>().left++;
         foo1--;
-        Debug.Log("뺌");
-        txtvalue.text=foo1.ToString();
-        txtLeft.text=left.ToString()+"Left";
+        txtupdate();
         }
-    else Debug.Log("안뺌");
+    }
+    void txtupdate(){ // 텍스트 업데이트.
+        txtvalue.text=foo1.ToString();
+        txtLeft.text=nodestroy.GetComponent<Nodestroy>().left.ToString()+" Left";
     }
 }
