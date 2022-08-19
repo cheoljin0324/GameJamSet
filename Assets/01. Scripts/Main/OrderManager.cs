@@ -1,43 +1,55 @@
-using System.Security.Cryptography.X509Certificates;
-using System.Linq;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using Core;
+using UnityEngine.Events;
+using TMPro;
 
-    public class OrderManager : MonoSingleton<OrderManager>
+public class OrderManager : MonoSingleton<OrderManager>
+{
+    [SerializeField] UnityEvent doPopUp = null;
+    public string Order { get; private set; } = "";
+    public string Submit { get; set; } = "";
+    private string[] randList = { "000", "100", "010", "001" };
+    private GameObject orderPanel = null;
+    private TextMeshProUGUI requestTMP = null;
+
+    private void Awake()
     {
-        public string Order { get; private set; } = "";
-        public string Submit { get; set; } = "";
-        private string[] randList = { "000", "100", "010", "001" };
+        orderPanel = GameObject.Find("Canvas/OrderPanel");
+        requestTMP = orderPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+    }
 
-        private void Start()
-        {
-            MakeOrder();
-        }
+    public void CompareOrder()
+    {
+        if (Order == Submit) Debug.Log("정답");
+        else Debug.Log("땡");
+    }
 
-        public void CompareOrder()
-        {
-            if(Order == Submit) Debug.Log("정답");
-            else Debug.Log("땡");
-        }
+    public void MakeOrder()
+    {
+        GetRandState();
+        //오브젝트에서 받아오기
+        requestTMP.text = ""; //오브젝트에서 받아온 텍스트
+    }
 
-        public void MakeOrder()
+    private void GetRandState()
+    {
+        int count = 0;
+        for (int i = 0; i < 9; i++)
         {
-            int count = 0;
-            for(int i = 0; i < 9; i ++)
+            string temp = randList[Random.Range(0, 4)];
+            Order += temp;
+            if (temp != "000")
             {
-                string temp = randList[Random.Range(0, 4)];
-                Order += temp;
-                if(temp != "000")
+                count++;
+                if (count >= 3)
                 {
-                    count ++;
-                    if(count >= 3)
-                    {
-                        for(int j = 0; j < 8 - i; j ++)
-                            Order += "000";
-                        break;
-                    }
+                    for (int j = 0; j < 8 - i; j++)
+                        Order += "000";
+                    break;
                 }
             }
         }
-
     }
+
+}
