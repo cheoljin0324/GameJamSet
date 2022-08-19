@@ -14,7 +14,7 @@ namespace Core
 
         private void Awake()
         {
-            Initialize(true);
+            Initialize();
 
             bV = PlayerPrefs.GetFloat("BGM", 0.5f);
             eV = PlayerPrefs.GetFloat("EFFECT", 0.5f); 

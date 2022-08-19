@@ -6,7 +6,7 @@ namespace Core
     {
         private void Awake()
         {
-            Initialize(true);
+            Initialize();
         }
     }
 }
