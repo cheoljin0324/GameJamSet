@@ -1,43 +1,72 @@
-using System.Security.Cryptography.X509Certificates;
-using System.Linq;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using Core;
+using UnityEngine.Events;
+using TMPro;
 
-    public class OrderManager : MonoSingleton<OrderManager>
+public class OrderManager : MonoSingleton<OrderManager>
+{
+    [SerializeField] UnityEvent doPopUp = null;
+    public string Order { get; private set; } = "";
+    public string Submit { get; set; } = "";
+    private string[] randList = { "000", "100", "010", "001" };
+    private Transform orderPanel = null;
+    private TextMeshProUGUI requestTMP = null;
+
+    private void Awake()
     {
-        public string Order { get; private set; } = "";
-        public string Submit { get; set; } = "";
-        private string[] randList = { "000", "100", "010", "001" };
+        orderPanel = GameObject.Find("Canvas").transform.GetChild(1);
+        requestTMP = orderPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+    }
 
-        private void Start()
-        {
+    private void Update()
+    {
+        if(Input.GetButtonDown("Jump"))
             MakeOrder();
-        }
+    }
 
-        public void CompareOrder()
-        {
-            if(Order == Submit) Debug.Log("정답");
-            else Debug.Log("땡");
-        }
+    public void CompareOrder()
+    {
+        if (Order == Submit) Debug.Log("정답");
+        else Debug.Log("땡");
+    }
 
-        public void MakeOrder()
+    public void MakeOrder()
+    {
+        GetRandState();
+        doPopUp?.Invoke();
+        //오브젝트에서 받아오기
+        requestTMP.text = ""; //오브젝트에서 받아온 텍스트
+
+        for(int i = 0; i < 9; i ++)
         {
-            int count = 0;
-            for(int i = 0; i < 9; i ++)
+            JewelryManager.Instance.countTMP[i].text = JewelryManager.Instance.haveJewelry[i].ToString();
+        }
+    }
+
+    private void GetRandState()
+    {
+        int count = 0;
+        string content = randList[Random.Range(1, 4)];
+        for (int i = 0; i < 9; i++)
+        {
+            int temp = Random.Range(0, 3);
+            if(temp == 0)
             {
-                string temp = randList[Random.Range(0, 4)];
-                Order += temp;
-                if(temp != "000")
-                {
-                    count ++;
-                    if(count >= 3)
-                    {
-                        for(int j = 0; j < 8 - i; j ++)
-                            Order += "000";
-                        break;
-                    }
-                }
+                count ++;
+                Order += content;
+            }
+            else Order += "000";
+        
+            if (count >= 3)
+            {
+                for (int j = 0; j < 8 - i; j++)
+                    Order += "000";
+                break;
             }
         }
 
+        Debug.Log(Order);
     }
+
+}
