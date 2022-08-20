@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/05. Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/05. Scenes/INTRO.unity
+    guid: ad82a7606d94b964ea9810c820e316ec
   - enabled: 1
-    path: Assets/hyb3nim/test.unity
-    guid: 4fdbee302374148cba8d52241a14084c
+    path: Assets/05. Scenes/INGAME.unity
+    guid: 28e762415a52f2140af54b3ab7d939b4
   m_configObjects: {}

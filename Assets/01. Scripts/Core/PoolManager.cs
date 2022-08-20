@@ -3,15 +3,19 @@ using UnityEngine;
 
 namespace Core
 {
-    public class PoolManager : MonoSingleton<PoolManager>
+    public class PoolManager : MonoBehaviour
     {
+        public static PoolManager Instance = null;
+
         [SerializeField] List<PoolableMono> poolingList = new List<PoolableMono>();
         private Dictionary<string, Pool<PoolableMono>> pools = new Dictionary<string, Pool<PoolableMono>>();
         private Transform parent = null;
 
         private void Awake()
         {
-            Initialize(true);
+            if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+            else { Destroy(gameObject); }
+            
 
             parent = transform.GetChild(0);
             foreach (PoolableMono p in poolingList)

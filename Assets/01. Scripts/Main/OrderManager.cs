@@ -11,13 +11,15 @@ public class OrderManager : MonoSingleton<OrderManager>
     [SerializeField] List<Sprite> customers = new List<Sprite>();
     [SerializeField] float dayTime = 600f;
     [SerializeField] UnityEvent doPopUp = null, doPopCustomer, doPopDayClearPanel;
+    [SerializeField] private float currentTime = 0;
+    private List<Button> jewelries = new List<Button>();
     public string Order { get; private set; } = "";
     public string Submit { get; set; } = "";
     private string[] randList = { "100", "010", "001" };
     private Transform orderPanel = null;
     private Image customerImage = null;
     private TextMeshProUGUI requestTMP = null;
-    [SerializeField] private float currentTime = 0;
+    private TextMeshProUGUI orderTMP = null;
     private bool onOrdering = false;
     private int getMoney;
     private int getFame;
@@ -26,7 +28,9 @@ public class OrderManager : MonoSingleton<OrderManager>
     {
         customerImage = GameObject.Find("Canvas").transform.Find("Customer").GetComponent<Image>();
         orderPanel = GameObject.Find("Canvas").transform.Find("OrderPanel");
+        orderTMP = GameObject.Find("Canvas").transform.Find("ProcessingPanel").Find("OrderText").GetComponent<TextMeshProUGUI>();
         requestTMP = orderPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        orderPanel.Find("Jewelries").GetComponentsInChildren<Button>(jewelries);
     }
 
     private void Update()
@@ -52,14 +56,26 @@ public class OrderManager : MonoSingleton<OrderManager>
     {
         if (Order == Submit)
         {
-            getMoney += Order.Replace("0","").Length * 100;
+            int money = Order.Replace("0","").Length * 100;
+            TextPrefab temp = PoolManager.Instance.Pop("TextPrefab") as TextPrefab;
+            temp.SetText($"감사합니다~\n돈 + {money}!!\n명성 + 10!!");
+            getMoney += money;
             getFame += 10;
         }
         else
         {
+            TextPrefab temp = PoolManager.Instance.Pop("TextPrefab") as TextPrefab;
+            temp.SetText("이게 멉니까!\n명성 - 10!!");
             getFame -= 10;
         };
+        foreach(Button b in jewelries)
+            b.interactable = true;
         onOrdering = false;
+    }
+
+    public void SetOrderText()
+    {
+        orderTMP.text = DataManager.Instance.Texts[Order];
     }
 
     private void GetOrder()

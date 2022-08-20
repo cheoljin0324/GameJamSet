@@ -39,6 +39,7 @@ public class IntroMovement : MonoBehaviour
         seq.Append(startButton.GetComponentInChildren<TextMeshProUGUI>().DOFade(0f, 0.5f).SetEase(Ease.Linear));
         seq.SetLoops(-1);
     }
+
     private void OnDisable()
     {
         seq.Kill();

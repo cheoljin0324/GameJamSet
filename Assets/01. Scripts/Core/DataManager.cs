@@ -1,6 +1,5 @@
 using System.IO;
 using System.Collections.Generic;
-using UnityEngine;
 using Newtonsoft.Json;
 
 namespace Core
@@ -20,6 +19,7 @@ namespace Core
             this.coolTimes = coolTimes;
         }
     }
+
     public class DataManager : MonoSingleton<DataManager>
     {
         private string path = "Assets/08. JSON/userData.json";
@@ -30,7 +30,8 @@ namespace Core
 
         private void Awake()
         {
-            Initialize();
+            Initialize(true);
+
             if(File.Exists(path))
             {
                 userData = JsonConvert.DeserializeObject<UserData>(File.ReadAllText(path));

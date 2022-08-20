@@ -6,7 +6,7 @@ public class Processing : MonoBehaviour
 {
     [SerializeField] int count;
     private int[] state = { 0, 0, 0 };
-    private Button button = null;
+    public Button button = null;
     private MakingCoolTime ctime = null;
     public int Index { get; set; } = 0;
 

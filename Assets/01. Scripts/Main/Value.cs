@@ -8,7 +8,7 @@ public class Value : MonoBehaviour
 
     public int foo1=0; //얻는 광물 개수
     [SerializeField] TextMeshProUGUI txtvalue; //value 표시용
-    [SerializeField] Text txtLeft; //left 표시용
+    [SerializeField] TextMeshProUGUI txtLeft; //left 표시용
     [SerializeField] Button btn1; //+
     [SerializeField] Button btn2; //-
     void Start(){
@@ -21,7 +21,7 @@ public class Value : MonoBehaviour
         btn2.onClick.AddListener(buttonMinus);
 
         txtvalue=transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        txtLeft=GameObject.Find("valueLeft").GetComponent<Text>();
+        txtLeft=GameObject.Find("valueLeft").GetComponent<TextMeshProUGUI>();
 
         txtupdate();
     }
