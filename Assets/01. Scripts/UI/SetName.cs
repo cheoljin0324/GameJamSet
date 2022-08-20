@@ -10,11 +10,15 @@ public class SetName : MonoBehaviour
     [SerializeField] GameObject nameSettingPanel = null;
     private TMP_InputField field = null;
 
+    private void Awake()
+    {
+        field = transform.GetChild(0).GetChild(0).GetComponent<TMP_InputField>();
+    }
+
     void Start()
     {
-        if(DataManager.Instance.UserData.name != "") return;
-        
-        nameSettingPanel.SetActive(true);
+        if(DataManager.Instance.UserData.name == "")
+            nameSettingPanel.SetActive(true);
     }
 
     public void NameSet()

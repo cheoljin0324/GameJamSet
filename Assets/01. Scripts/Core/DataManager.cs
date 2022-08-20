@@ -1,10 +1,11 @@
-using System.IO;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Core
 {
+    [Serializable]
     public class UserData
     {
         [JsonProperty("name")] public string name;
@@ -14,14 +15,14 @@ namespace Core
         [JsonProperty("coolTimes")] public float[] coolTimes;
         [JsonProperty("bag")] public int bag;
 
-        public UserData(int fame, int day, int money, float[] coolTimes, int bag, string name)
+        public UserData(string name, int fame, int day, int money, float[] coolTimes, int bag)
         {
+            this.name = name;
             this.fame = fame;
             this.day = day;
             this.money = money;
             this.coolTimes = coolTimes;
             this.bag = bag;
-            this.name = name;
         }
     }
 
@@ -29,29 +30,36 @@ namespace Core
     {
         public static DataManager Instance = null;
 
-        private string path = "Assets/08. JSON/userData.json";
-        private string TPath = "Assets/08. JSON/result.json";
-        private UserData userData;
+        [SerializeField] TextAsset texts;
+        public UserData userData;
         public UserData UserData => userData;
         public Dictionary<string, string> Texts;
+        private bool isClear = false;
 
-        private void Awake()
+        public void Awake()
         {
             if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
             else { Destroy(transform.root.gameObject); }
 
-            string data = File.ReadAllText(path);
-            if(data.Length <= 0) userData = new UserData(0, 1, 0, new float[] {5, 5, 5}, 30, "");
+            string data = PlayerPrefs.GetString("UserData", "");
+            Debug.Log(data);
+            if(data.Length <= 0 || data == null || data == "null") userData = new UserData("", 0, 1, 0, new float[] {5, 5, 5}, 30);
             else userData = JsonConvert.DeserializeObject<UserData>(data);
 
-            if(File.Exists(TPath))
-                Texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));
+            string textData = texts.text;
+            if(textData.Length <= 0) return;
+                Texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(textData);
         }
-    
+
         private void OnDisable()
         {
+            SaveFile();
+        }
+
+        public void SaveFile()
+        {
             string JSON = JsonConvert.SerializeObject(userData);
-            File.WriteAllText(path, JsonConvert.SerializeObject(JSON));
+            PlayerPrefs.SetString("UserData", JSON);
         }
     }
 }

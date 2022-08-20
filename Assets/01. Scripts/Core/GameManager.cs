@@ -2,11 +2,8 @@ using UnityEngine;
 
 namespace Core 
 {
-    public class GameManager //: MonoSingleton<GameManager>
+    public class GameManager : MonoBehaviour
     {
-        // private void Awake()
-        // {
-        //     Initialize(true);
-        // }
+        
     }
 }

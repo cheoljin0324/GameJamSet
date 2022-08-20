@@ -31,6 +31,9 @@ public class Client : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+        else Destroy(transform.root.gameObject);
+
         server = new WebSocket("ws://" + IP + ":" + PORT);
         server.ConnectAsync();
 
@@ -42,6 +45,7 @@ public class Client : MonoBehaviour
         lock(locker)
         {
             Packet p = JsonConvert.DeserializeObject<Packet>(args.Data);
+
             actions.Enqueue(() => {
                 if(leaderBoard.ContainsKey(p.name)) leaderBoard[p.name] = p.fame;
                 else leaderBoard.Add(p.name, p.fame);
@@ -69,7 +73,7 @@ public class Client : MonoBehaviour
         fameTMP.text = "";
 
         foreach(string name in leaderBoard.Keys)
-            nameTMP.text += name + " : \n";
+            nameTMP.text += name + "\n";
         foreach(int fame in leaderBoard.Values)
             fameTMP.text += fame + "\n";
     }
