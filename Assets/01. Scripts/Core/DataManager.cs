@@ -40,25 +40,18 @@ namespace Core
             if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
             else { Destroy(transform.root.gameObject); }
 
-            if(File.Exists(path))
-            {
-                userData = JsonConvert.DeserializeObject<UserData>(File.ReadAllText(path));
-            }
-            else
-            {
-                userData = new UserData(0, 1, 0, new float[] {1, 1, 1}, 30, "");
-            }
+            string data = File.ReadAllText(path);
+            if(data.Length <= 0) userData = new UserData(0, 1, 0, new float[] {5, 5, 5}, 30, "");
+            else userData = JsonConvert.DeserializeObject<UserData>(data);
+
             if(File.Exists(TPath))
                 Texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));
         }
-        private void OnApplicationQuit()
+    
+        private void OnDisable()
         {
-            // Fame, Day, Money 가지고 있는 곳에서 세이브하세요.
-        }
-
-        public void SaveFile(UserData data)
-        {
-            File.WriteAllText(path, JsonConvert.SerializeObject(data));
+            string JSON = JsonConvert.SerializeObject(userData);
+            File.WriteAllText(path, JsonConvert.SerializeObject(JSON));
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Core
         {
             if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
             else { Destroy(transform.root.gameObject); }
-            
 
             parent = transform.GetChild(0);
             foreach (PoolableMono p in poolingList)
