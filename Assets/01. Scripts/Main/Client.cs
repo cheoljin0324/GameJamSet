@@ -23,7 +23,7 @@ public class Client : MonoBehaviour
     public static Client Instance = null;
 
     [SerializeField] string IP, PORT;
-    [SerializeField] TextMeshProUGUI nameTMP, fameTMP;
+    private TextMeshProUGUI nameTMP, fameTMP;
     private WebSocket server;
     private Queue<Action> actions = new Queue<Action>();
     private Dictionary<string, int> leaderBoard = new Dictionary<string, int>();
@@ -68,14 +68,26 @@ public class Client : MonoBehaviour
 
     public void ShowLeaderBoard()
     {
+        nameTMP = GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Name").GetComponent<TextMeshProUGUI>();
+        fameTMP = GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Fame").GetComponent<TextMeshProUGUI>();
         leaderBoard = SoltDictionary(leaderBoard);
         nameTMP.text = "";
         fameTMP.text = "";
 
+        int i = 0;
         foreach(string name in leaderBoard.Keys)
+        {
+            if(i >= 5) break;
             nameTMP.text += name + "\n";
+            i++;
+        }
+        i = 0;
         foreach(int fame in leaderBoard.Values)
-            fameTMP.text += fame + "\n";
+        {
+            if(i >= 5) break;
+            fameTMP.text += "명성도 : " + fame + "\n";
+            i++;
+        }
     }
 
     private Dictionary<string, int> SoltDictionary(Dictionary<string, int> d)
