@@ -23,6 +23,8 @@ public class OrderManager : MonoSingleton<OrderManager>
     public int GetMoney { get; set; }
     public int GetFame { get; set; }
     public int CustomerCount { get; set; }
+    public int MakeCount { get; set; }
+    private bool dayCleared = false;
 
     private void Awake()
     {
@@ -38,8 +40,9 @@ public class OrderManager : MonoSingleton<OrderManager>
 
         currentTime += Time.deltaTime;
 
-        if (currentTime >= dayTime)
+        if (currentTime >= dayTime && !dayCleared && !onOrdering)
         {
+            dayCleared = true;
             doPopDayClearPanel?.Invoke();
             //데이 클리어 패널 보여주기 데이터 매니저 + getfame , getmoney
         }
@@ -59,6 +62,7 @@ public class OrderManager : MonoSingleton<OrderManager>
             TextPrefab temp = PoolManager.Instance.Pop("TextPrefab") as TextPrefab;
             temp.SetText($"감사합니다~\n돈 + {money}!!\n명성 + 10!!");
             GetMoney += money;
+            MakeCount++;
             GetFame += Order.Replace("0","").Length * 3;
         }
         else
@@ -91,9 +95,14 @@ public class OrderManager : MonoSingleton<OrderManager>
         doPopUp?.Invoke();
         requestTMP.text = DataManager.Instance.Texts[Order];
 
+        SetQuantity();
+    }
+
+    public void SetQuantity()
+    {
         for (int i = 0; i < 9; i++)
         {
-            JewelryManager.Instance.countTMP[i].text = JewelryManager.Instance.haveJewelry[i].ToString();
+            JewelryManager.Instance.countTMP[i].text = "X " + JewelryManager.Instance.haveJewelry[i].ToString();
         }
     }
 
