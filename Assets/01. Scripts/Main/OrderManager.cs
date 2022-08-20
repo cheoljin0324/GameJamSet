@@ -28,7 +28,7 @@ public class OrderManager : MonoSingleton<OrderManager>
     {
         customerImage = GameObject.Find("Canvas").transform.Find("Customer").GetComponent<Image>();
         orderPanel = GameObject.Find("Canvas").transform.Find("OrderPanel");
-        requestTMP = orderPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        requestTMP = orderPanel.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         orderPanel.Find("Jewelries").GetComponentsInChildren<Button>(jewelries);
     }
 
