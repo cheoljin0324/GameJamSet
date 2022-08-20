@@ -723,7 +723,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 313959041}
   effectSource: {fileID: 209104362}
-  clipList: []
+  clipList:
+  - {fileID: 8300000, guid: 30483e6f62ceb7641a89f1678ecc1366, type: 3}
+  - {fileID: 8300000, guid: 90721d2922c10f246bb39460575a692b, type: 3}
+  - {fileID: 8300000, guid: 9f0a97dd37c30f045b1c4a866df8423d, type: 3}
+  - {fileID: 8300000, guid: 25348357f75ec434aaada62b18d086b4, type: 3}
+  - {fileID: 8300000, guid: 32c39c21aca11314fbdd2d2a8a03479f, type: 3}
+  - {fileID: 8300000, guid: 1eeb30295f7a8804d8832ebdfa0cfac1, type: 3}
+  - {fileID: 8300000, guid: 63bedffd84854db49b2512c7fc4c2aaf, type: 3}
+  - {fileID: 8300000, guid: 19389093e6d787c4da6150e7f8797203, type: 3}
+  - {fileID: 8300000, guid: 5393fa0658d165f43b4ce91c07686390, type: 3}
 --- !u!4 &243360781
 Transform:
   m_ObjectHideFlags: 0
