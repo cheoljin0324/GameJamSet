@@ -1,6 +1,6 @@
 const fs = require('fs');
 const ws = require('ws');
-const wss = new ws.Server({port:3000});
+const wss = new ws.Server({port:3001});
 
 const path = './data.json';
 
@@ -9,7 +9,9 @@ wss.on('listening', () => {
 });
 
 wss.on('connection', client => {
+    console.log("client connect");
     client.on('message', msg => {
+        console.log("client onMessage" + msg.toString());
         const file = require('./data.json');
         const data = JSONParse(msg.toString());
         if(data == false) return;
@@ -34,7 +36,10 @@ wss.on('connection', client => {
             file.push(data);
             fs.writeFileSync(path, JSON.stringify(file));
         }
-        client.send(JSON.stringify(file));
+        file.forEach(f => {
+            client.send(JSON.stringify(f));
+        })
+        console.log("server send foreach" + JSON.stringify(file));
     });
 });
 
