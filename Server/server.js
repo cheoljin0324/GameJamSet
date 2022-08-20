@@ -11,8 +11,18 @@ wss.on('listening', () => {
 wss.on('connection', client => {
     console.log("client connect");
     client.on('message', msg => {
-        console.log("client onMessage" + msg.toString());
+        console.log("client onMessage " + msg.toString());
         const file = require('./data.json');
+        if(msg.toString() == "req") 
+        {
+            file.forEach(userData => {
+                client.send(JSON.stringify(userData));
+                console.log("server send " + JSON.stringify(userData));
+            });
+            client.send("res");
+            console.log("server send " + "res");
+            return;
+        }
         const data = JSONParse(msg.toString());
         if(data == false) return;
         if((data.n == undefined) || (data.f == undefined)) return;
@@ -36,9 +46,6 @@ wss.on('connection', client => {
             file.push(data);
             fs.writeFileSync(path, JSON.stringify(file));
         }
-        file.forEach(f => {
-            client.send(JSON.stringify(f));
-        })
         console.log("server send foreach" + JSON.stringify(file));
     });
 });
