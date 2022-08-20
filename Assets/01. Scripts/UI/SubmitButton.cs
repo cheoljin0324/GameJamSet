@@ -1,6 +1,7 @@
 using UnityEngine.Events;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class SubmitButton : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class SubmitButton : MonoBehaviour
     public UnityEvent submitEvents;
     private Sequence seq;
     private RectTransform rect;
+    private bool isTweening = false;
     [SerializeField] Transform[] trms;
+    [SerializeField] Sprite kanjurSP;
 
     private void Awake()
     {
@@ -17,14 +20,25 @@ public class SubmitButton : MonoBehaviour
 
     public void DoSubmit(float duration)
     {
+        if(isTweening) return;
+
+        isTweening = true;
+
         seq = DOTween.Sequence();
         seq.Append(rect.DOJump(trms[0].position, 0.5f, 1, duration / 3).SetEase(Ease.InOutCubic));
         seq.Append(rect.DOJump(trms[1].position, 0.5f, 1, duration / 3).SetEase(Ease.InOutCubic));
         seq.Append(rect.DOJump(trms[2].position, 0.5f, 1, duration / 3).SetEase(Ease.InOutCubic));
         seq.Append(rect.DOMove(trms[3].position, duration / 3));
         seq.AppendCallback(() => {
-            paperImageRect.gameObject.SetActive(false);
-            submitEvents?.Invoke();
+            paperImageRect.DOScale(Vector3.zero, duration / 3).OnComplete(() => {
+                paperImageRect.GetComponent<Image>().sprite = kanjurSP;
+                paperImageRect.DOScale(Vector3.one, duration / 2).OnComplete(() => {
+                    paperImageRect.gameObject.SetActive(false);
+                    paperImageRect.GetComponent<Image>().sprite = null;
+                    isTweening = false;
+                    submitEvents?.Invoke();
+                });
+            });
         });
     }
 
