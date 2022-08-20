@@ -127,6 +127,10 @@ public class OrderManager : MonoSingleton<OrderManager>
             }
             else Order += "000";
         }
+        if(Order.Replace("0", "").Length <= 0)
+        {
+            Order = "000000000000000000000000001";
+        }
     }
 
 }

@@ -7,6 +7,7 @@ public class SubmitButton : MonoBehaviour
 {
     [SerializeField] RectTransform paperImageRect;
     public UnityEvent submitEvents;
+    private Processor processor = null;
     private Sequence seq;
     private RectTransform rect;
     private bool isTweening = false;
@@ -16,6 +17,7 @@ public class SubmitButton : MonoBehaviour
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
+        processor = GameObject.Find("Canvas").transform.Find("ProcessingPanel/ProcessorPanel").GetComponent<Processor>();
     }
 
     public void DoSubmit(float duration)
@@ -36,6 +38,8 @@ public class SubmitButton : MonoBehaviour
                     paperImageRect.gameObject.SetActive(false);
                     paperImageRect.GetComponent<Image>().sprite = null;
                     isTweening = false;
+                    for(int i = 0; i < processor.processingList.Count; i++)
+                        processor.processingList[i].button.interactable = true;
                     submitEvents?.Invoke();
                 });
             });

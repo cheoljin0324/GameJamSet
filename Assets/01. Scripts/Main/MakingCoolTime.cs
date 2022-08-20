@@ -3,7 +3,8 @@ using UnityEngine.Events;
 
 public class MakingCoolTime : MonoBehaviour
 {
-    public UnityEvent doPopDown, doPopUp;
+    public UnityEvent doPopDown;
+    public UnityEvent<int> doPopUp;
 
     public void SetCoolTime(float duration)
     {
