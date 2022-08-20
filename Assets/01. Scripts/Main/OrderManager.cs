@@ -20,7 +20,9 @@ public class OrderManager : MonoSingleton<OrderManager>
     [SerializeField] private float currentTime = 0;
     private bool onOrdering = false;
     private int getMoney;
+    public int GetMoney => getMoney;
     private int getFame;
+    public int GetFame => getFame;
 
     private void Awake()
     {
