@@ -11,7 +11,7 @@ public class OrderManager : MonoSingleton<OrderManager>
     [SerializeField] List<Sprite> customers = new List<Sprite>();
     [SerializeField] float dayTime = 600f;
     [SerializeField] UnityEvent doPopUp = null, doPopCustomer, doPopDayClearPanel;
-    [SerializeField] private float currentTime = 0;
+    public float CurrentTime = 0;
     private List<Button> jewelries = new List<Button>();
     public string Order { get; private set; } = "";
     public string Submit { get; set; } = "";
@@ -24,7 +24,7 @@ public class OrderManager : MonoSingleton<OrderManager>
     public int GetFame { get; set; }
     public int CustomerCount { get; set; }
     public int MakeCount { get; set; }
-    private bool dayCleared = false;
+    public bool dayCleared = false;
 
     private void Awake()
     {
@@ -36,18 +36,18 @@ public class OrderManager : MonoSingleton<OrderManager>
 
     private void Update()
     {
-        if (JewelryManager.Instance.OnPreparing) return;
+        if (JewelryManager.Instance.OnPreparing && !dayCleared) return;
 
-        currentTime += Time.deltaTime;
+        CurrentTime += Time.deltaTime;
 
-        if (currentTime >= dayTime && !dayCleared && !onOrdering)
+        if (CurrentTime >= dayTime && !dayCleared && !onOrdering)
         {
             dayCleared = true;
             doPopDayClearPanel?.Invoke();
             //데이 클리어 패널 보여주기 데이터 매니저 + getfame , getmoney
         }
 
-        if (!onOrdering && currentTime < dayTime)
+        if (!onOrdering && CurrentTime < dayTime)
         {
             Invoke("GetOrder", 3f);
             onOrdering = true;
@@ -74,6 +74,7 @@ public class OrderManager : MonoSingleton<OrderManager>
         foreach(Button b in jewelries)
             b.interactable = true;
         onOrdering = false;
+        Submit = "";
     }
     
     private void GetOrder()

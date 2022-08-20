@@ -35,7 +35,7 @@ public class DayClearUI : MonoBehaviour
         seq.Append(dayText.DOFade(1f, 0.75f));
         foreach(TextMeshProUGUI text in texts)
         {
-            seq.Append(text.DOFade(1f, 0.75f).OnStart(() => {text.transform.DOMoveX(250, 0.75f);}));
+            seq.Append(text.DOFade(1f, 0.75f).OnStart(() => {text.transform.DOLocalMoveX(-250, 0.75f);}));
         }
     }
 
@@ -54,8 +54,18 @@ public class DayClearUI : MonoBehaviour
         OrderManager.Instance.GetMoney = 0;
         OrderManager.Instance.MakeCount = 0;
         OrderManager.Instance.CustomerCount = 0;
+        OrderManager.Instance.CurrentTime = 0;
 
         string JSON = JsonConvert.SerializeObject(new Client.Packet(ud.name, ud.fame));
         Client.Instance.SendMessages(JSON);
+    }
+    public void ResetPos()
+    {
+        foreach(var text in texts)
+        {
+            text.transform.localPosition -= new Vector3(100, 0);
+        }
+        OrderManager.Instance.dayCleared = false;
+        transform.localPosition += new Vector3(100, 0);
     }
 }

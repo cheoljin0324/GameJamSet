@@ -50,8 +50,6 @@ public class Client : MonoBehaviour
             actions.Enqueue(() => {
                 if(leaderBoard.ContainsKey(p.name)) leaderBoard[p.name] = p.fame;
                 else leaderBoard.Add(p.name, p.fame);
-
-                ShowLeaderBoard();
             });
         }
     }
@@ -69,8 +67,9 @@ public class Client : MonoBehaviour
 
     public void ShowLeaderBoard()
     {
-        nameTMP = GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Name").GetComponent<TextMeshProUGUI>();
-        fameTMP = GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Fame").GetComponent<TextMeshProUGUI>();
+        if(!GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Name").TryGetComponent<TextMeshProUGUI>(out nameTMP) || 
+        !GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Fame").TryGetComponent<TextMeshProUGUI>(out fameTMP))
+            return;
         leaderBoard = SoltDictionary(leaderBoard);
         nameTMP.text = "";
         fameTMP.text = "";
