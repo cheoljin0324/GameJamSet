@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
+using Core;
 
 public class LeaderBoardRequest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Request()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UserData ud = DataManager.Instance.UserData;
+        string JSON = JsonConvert.SerializeObject(new Client.Packet(ud.name, ud.fame));
+        Client.Instance.SendMessages(JSON);
     }
 }

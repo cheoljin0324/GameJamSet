@@ -20,10 +20,9 @@ public class OrderManager : MonoSingleton<OrderManager>
     private Image customerImage = null;
     private TextMeshProUGUI requestTMP = null;
     private bool onOrdering = false;
-    private int getMoney;
-    public int GetMoney => getMoney;
-    private int getFame;
-    public int GetFame => getFame;
+    public int GetMoney { get; set; }
+    public int GetFame { get; set; }
+    public int CustomerCount { get; set; }
 
     private void Awake()
     {
@@ -59,14 +58,14 @@ public class OrderManager : MonoSingleton<OrderManager>
             int money = Order.Replace("0","").Length * 100;
             TextPrefab temp = PoolManager.Instance.Pop("TextPrefab") as TextPrefab;
             temp.SetText($"감사합니다~\n돈 + {money}!!\n명성 + 10!!");
-            getMoney += money;
-            getFame += 10;
+            GetMoney += money;
+            GetFame += Order.Replace("0","").Length * 3;
         }
         else
         {
             TextPrefab temp = PoolManager.Instance.Pop("TextPrefab") as TextPrefab;
-            temp.SetText("이게 멉니까!\n명성 - 10!!");
-            getFame -= 10;
+            temp.SetText($"이게 멉니까!\n명성 - {Order.Replace("0","").Length * 3}!!");
+            GetFame -= Order.Replace("0","").Length * 3;
         };
         foreach(Button b in jewelries)
             b.interactable = true;
@@ -83,7 +82,7 @@ public class OrderManager : MonoSingleton<OrderManager>
     public void DiscardOrder()
     {
         onOrdering = false;
-        getFame -= 5;
+        GetFame -= 5;
     }
 
     public void MakeOrder()
