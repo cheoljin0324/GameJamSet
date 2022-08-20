@@ -7,7 +7,7 @@ public class Processing : MonoBehaviour
     [SerializeField] Sprite[] sprites;
     [SerializeField] int count;
     private int[] state = { 0, 0, 0 };
-    private Button button = null;
+    public Button button = null;
     private Image image = null;
     private MakingCoolTime ctime = null;
     public int Index { get; set; } = 0;
@@ -34,7 +34,7 @@ public class Processing : MonoBehaviour
             return;
         }
 
-        ctime.doPopUp?.Invoke();
+        ctime.doPopUp?.Invoke(Index);
         ctime.SetCoolTime(DataManager.Instance.UserData.coolTimes[Index]);
         JewelryManager.Instance.haveJewelry[count]--;
         state[Index]++;

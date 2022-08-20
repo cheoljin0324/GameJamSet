@@ -32,7 +32,7 @@ namespace Core
                 clips.Add(c.name, c);
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             PlayerPrefs.SetFloat("BGM", BGMSource.volume); 
             PlayerPrefs.SetFloat("EFFECT", EffectSource.volume);

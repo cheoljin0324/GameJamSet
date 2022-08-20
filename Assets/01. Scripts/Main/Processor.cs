@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
     public class Processor : MonoBehaviour
     {
-        private List<Processing> processingList = new List<Processing>();
+        public List<Processing> processingList = new List<Processing>();
 
         private void Awake()
         {
