@@ -39,8 +39,9 @@ public class Value : MonoBehaviour
         txtupdate();
         }
     }
-    void txtupdate(){ // 텍스트 업데이트.
-        txtvalue.text=foo1.ToString();
-        txtLeft.text=jewelryManager.GetComponent<JewelryManager>().left.ToString()+" Left";
+    void txtupdate()
+    { // 텍스트 업데이트.
+        txtvalue.text = foo1.ToString();
+        txtLeft.text = "채집 가능 광석 개수 : " + jewelryManager.GetComponent<JewelryManager>().left.ToString();
     }
 }
