@@ -23,12 +23,10 @@ public class IntroMovement : MonoBehaviour
     public void TitleRoutine()
     {
         titleSeq = DOTween.Sequence();
-        title.GetComponent<TextMeshProUGUI>().DOFade(1, 1f);
-        titleSeq.Append(title.transform.DOLocalMoveY(300, 1f).OnComplete(() => {
-            settingButton.GetComponent<Image>().DOFade(1f, 0.75f);
-            settingButton.GetComponentInChildren<TextMeshProUGUI>().DOFade(1f, 0.75f).OnComplete(() => {
-                leaderboardBt.GetComponent<Image>().DOFade(1f, 0.75f);
-                leaderboardBt.GetComponentInChildren<TextMeshProUGUI>().DOFade(1f, 0.75f);
+        title.GetComponent<TextMeshProUGUI>().DOFade(1, 0.7f);
+        titleSeq.Append(title.transform.DOLocalMoveY(280, 0.7f).OnComplete(() => {
+            settingButton.GetComponent<Image>().DOFade(1f, 0.65f).OnComplete(() => {
+                leaderboardBt.GetComponent<Image>().DOFade(1f, 0.65f);
             });
         })
         );
