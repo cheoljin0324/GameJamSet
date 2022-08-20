@@ -22,7 +22,9 @@ public class OrderManager : MonoSingleton<OrderManager>
     private TextMeshProUGUI orderTMP = null;
     private bool onOrdering = false;
     private int getMoney;
+    public int GetMoney => getMoney;
     private int getFame;
+    public int GetFame => getFame;
 
     private void Awake()
     {
