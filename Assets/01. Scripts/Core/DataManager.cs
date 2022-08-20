@@ -1,6 +1,7 @@
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Core
 {
@@ -10,18 +11,22 @@ namespace Core
         [JsonProperty("day")] public int day;
         [JsonProperty("money")] public int money;
         [JsonProperty("coolTimes")] public float[] coolTimes;
+        [JsonProperty("bag")] public int bag;
 
-        public UserData(int fame, int day, int money, float[] coolTimes)
+        public UserData(int fame, int day, int money, float[] coolTimes, int bag)
         {
             this.fame = fame;
             this.day = day;
             this.money = money;
             this.coolTimes = coolTimes;
+            this.bag = bag;
         }
     }
 
-    public class DataManager : MonoSingleton<DataManager>
+    public class DataManager : MonoBehaviour
     {
+        public static DataManager Instance = null;
+
         private string path = "Assets/08. JSON/userData.json";
         private string TPath = "Assets/08. JSON/result.json";
         private UserData userData;
@@ -30,7 +35,8 @@ namespace Core
 
         private void Awake()
         {
-            Initialize(true);
+            if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+            else { Destroy(transform.root.gameObject); }
 
             if(File.Exists(path))
             {
@@ -38,7 +44,7 @@ namespace Core
             }
             else
             {
-                userData = new UserData(0, 1, 0, new float[] {1, 1, 1});
+                userData = new UserData(0, 1, 0, new float[] {1, 1, 1}, 30);
             }
             if(File.Exists(TPath))
                 Texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));

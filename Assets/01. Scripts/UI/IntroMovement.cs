@@ -12,6 +12,7 @@ public class IntroMovement : MonoBehaviour
     [SerializeField] private GameObject leaderboardBt;
     [SerializeField] private GameObject title;
     private Sequence seq;
+    private Sequence titleSeq;
 
     private void Start()
     {
@@ -21,9 +22,9 @@ public class IntroMovement : MonoBehaviour
 
     public void TitleRoutine()
     {
-        Sequence sequence = DOTween.Sequence();
+        titleSeq = DOTween.Sequence();
         title.GetComponent<TextMeshProUGUI>().DOFade(1, 1f);
-        sequence.Append(title.transform.DOLocalMoveY(300, 1f).OnComplete(() => {
+        titleSeq.Append(title.transform.DOLocalMoveY(300, 1f).OnComplete(() => {
             settingButton.GetComponent<Image>().DOFade(1f, 0.75f);
             settingButton.GetComponentInChildren<TextMeshProUGUI>().DOFade(1f, 0.75f).OnComplete(() => {
                 leaderboardBt.GetComponent<Image>().DOFade(1f, 0.75f);
@@ -43,5 +44,6 @@ public class IntroMovement : MonoBehaviour
     private void OnDisable()
     {
         seq.Kill();
+        titleSeq.Kill();
     }
 }

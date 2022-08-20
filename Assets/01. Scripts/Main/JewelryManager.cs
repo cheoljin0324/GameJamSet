@@ -25,6 +25,11 @@ public class JewelryManager : MonoSingleton<JewelryManager>
         }
     }
 
+    private void OnEnable()
+    {
+        left = DataManager.Instance.UserData.bag;
+    }
+
     public void SetHaveArray(string name, int value)
     {
         haveJewelry[Array.IndexOf(nameData, name)] = value;
