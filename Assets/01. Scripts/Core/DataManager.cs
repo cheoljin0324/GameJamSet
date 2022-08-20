@@ -7,19 +7,21 @@ namespace Core
 {
     public class UserData
     {
+        [JsonProperty("name")] public string name;
         [JsonProperty("fame")] public int fame;
         [JsonProperty("day")] public int day;
         [JsonProperty("money")] public int money;
         [JsonProperty("coolTimes")] public float[] coolTimes;
         [JsonProperty("bag")] public int bag;
 
-        public UserData(int fame, int day, int money, float[] coolTimes, int bag)
+        public UserData(int fame, int day, int money, float[] coolTimes, int bag, string name)
         {
             this.fame = fame;
             this.day = day;
             this.money = money;
             this.coolTimes = coolTimes;
             this.bag = bag;
+            this.name = name;
         }
     }
 
@@ -44,7 +46,7 @@ namespace Core
             }
             else
             {
-                userData = new UserData(0, 1, 0, new float[] {1, 1, 1}, 30);
+                userData = new UserData(0, 1, 0, new float[] {1, 1, 1}, 30, "");
             }
             if(File.Exists(TPath))
                 Texts = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(TPath));
