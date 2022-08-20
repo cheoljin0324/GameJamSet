@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Linq;
 using TMPro;
 using WebSocketSharp;
@@ -92,20 +93,10 @@ public class Client : MonoBehaviour
 
     private Dictionary<string, int> SoltDictionary(Dictionary<string, int> d)
     {
-        List<int> temp = d.Values.ToList();
+        var temp = d.OrderByDescending(x => x.Value);
         Dictionary<string, int> dic = new Dictionary<string, int>();
-        temp.Sort();
-        
-        foreach(string s in d.Keys)
-        {
-            for(int i = 0; i < temp.Count; i++)
-                if(d[s] == temp[i])
-                {
-                    dic.Add(s, temp[i]);
-                    break;
-                }
-        }
-
+        foreach(var pair in temp)
+            dic.Add(pair.Key, pair.Value);
         return dic;
     }
 }
