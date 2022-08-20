@@ -1612,7 +1612,7 @@ RectTransform:
   m_GameObject: {fileID: 225815481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2104396573}
@@ -8674,6 +8674,7 @@ GameObject:
   - component: {fileID: 1252572042}
   - component: {fileID: 1252572041}
   - component: {fileID: 1252572040}
+  - component: {fileID: 1252572045}
   - component: {fileID: 1252572043}
   - component: {fileID: 1252572044}
   m_Layer: 5
@@ -8760,9 +8761,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1252572043}
-        m_TargetAssemblyTypeName: PopUp, Assembly-CSharp
-        m_MethodName: DoPopDown
+      - m_Target: {fileID: 1252572045}
+        m_TargetAssemblyTypeName: SlideDown, Assembly-CSharp
+        m_MethodName: DoSlideDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8838,6 +8839,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.3
   rect: {fileID: 1598085437}
+--- !u!114 &1252572045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252572038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1747077ec490544a2e31e02911f922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.3
+  rect: {fileID: 1085923703}
 --- !u!1 &1260681647
 GameObject:
   m_ObjectHideFlags: 0
@@ -11043,7 +11058,7 @@ RectTransform:
   m_GameObject: {fileID: 1598085436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 225815482}
