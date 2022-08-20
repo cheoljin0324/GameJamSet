@@ -6,8 +6,8 @@ public class LeaderBoardRequest : MonoBehaviour
 {
     public void Request()
     {
-        UserData ud = DataManager.Instance.UserData;
-        string JSON = JsonConvert.SerializeObject(new Client.Packet(ud.name, ud.fame));
-        Client.Instance.SendMessages(JSON);
+        Client.Instance.SendMessages("req");
+        
+        Client.Instance.IsReq = true;
     }
 }

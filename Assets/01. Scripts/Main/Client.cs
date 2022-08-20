@@ -27,8 +27,10 @@ public class Client : MonoBehaviour
     private TextMeshProUGUI nameTMP, fameTMP;
     private WebSocket server;
     private Queue<Action> actions = new Queue<Action>();
+    private Queue<Action> leaderBoardReq = new Queue<Action>();
     private Dictionary<string, int> leaderBoard = new Dictionary<string, int>();
     private object locker = new object();
+    public bool IsReq { get; set; }
 
     private void Awake()
     {
@@ -45,6 +47,13 @@ public class Client : MonoBehaviour
     {
         lock(locker)
         {
+            if (args.Data == "res")
+            {
+                actions.Enqueue(() => {
+                    ShowLeaderBoard();
+                });
+                return;
+            }
             Packet p = JsonConvert.DeserializeObject<Packet>(args.Data);
 
             actions.Enqueue(() => {
@@ -59,6 +68,11 @@ public class Client : MonoBehaviour
         while(actions.Count > 0) actions.Dequeue()?.Invoke();
     }
 
+    private void LateUpdate()
+    {
+        while(leaderBoardReq.Count > 0) leaderBoardReq.Dequeue()?.Invoke();
+    }
+
     public void SendMessages(string content)
     {
         if(!server.IsAlive) { Debug.Log("Server Not Connected!"); return; }
@@ -67,7 +81,7 @@ public class Client : MonoBehaviour
 
     public void ShowLeaderBoard()
     {
-        if(!GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Name").TryGetComponent<TextMeshProUGUI>(out nameTMP) || 
+        if (!GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Name").TryGetComponent<TextMeshProUGUI>(out nameTMP) ||
         !GameObject.Find("Canvas/MasterPanel/LeaderBoardPanel/Fame").TryGetComponent<TextMeshProUGUI>(out fameTMP))
             return;
         leaderBoard = SoltDictionary(leaderBoard);
@@ -75,19 +89,21 @@ public class Client : MonoBehaviour
         fameTMP.text = "";
 
         int i = 0;
-        foreach(string name in leaderBoard.Keys)
+        foreach (string name in leaderBoard.Keys)
         {
-            if(i >= 5) break;
+            if (i >= 5) break;
             nameTMP.text += name + "\n";
             i++;
         }
         i = 0;
-        foreach(int fame in leaderBoard.Values)
+        foreach (int fame in leaderBoard.Values)
         {
-            if(i >= 5) break;
+            if (i >= 5) break;
             fameTMP.text += "명성도 : " + fame + "\n";
             i++;
         }
+
+        IsReq = false;
     }
 
     private Dictionary<string, int> SoltDictionary(Dictionary<string, int> d)
