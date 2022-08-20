@@ -19,7 +19,6 @@ public class OrderManager : MonoSingleton<OrderManager>
     private Transform orderPanel = null;
     private Image customerImage = null;
     private TextMeshProUGUI requestTMP = null;
-    private TextMeshProUGUI orderTMP = null;
     private bool onOrdering = false;
     private int getMoney;
     public int GetMoney => getMoney;
@@ -30,7 +29,6 @@ public class OrderManager : MonoSingleton<OrderManager>
     {
         customerImage = GameObject.Find("Canvas").transform.Find("Customer").GetComponent<Image>();
         orderPanel = GameObject.Find("Canvas").transform.Find("OrderPanel");
-        orderTMP = GameObject.Find("Canvas").transform.Find("ProcessingPanel").Find("OrderText").GetComponent<TextMeshProUGUI>();
         requestTMP = orderPanel.transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
         orderPanel.Find("Jewelries").GetComponentsInChildren<Button>(jewelries);
     }
@@ -74,12 +72,7 @@ public class OrderManager : MonoSingleton<OrderManager>
             b.interactable = true;
         onOrdering = false;
     }
-
-    public void SetOrderText()
-    {
-        orderTMP.text = DataManager.Instance.Texts[Order];
-    }
-
+    
     private void GetOrder()
     {
         customerImage.sprite = customers[Random.Range(0, customers.Count)];

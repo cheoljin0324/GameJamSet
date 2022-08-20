@@ -3,8 +3,10 @@ using UnityEngine;
 
 namespace Core
 {
-    public class AudioManager : MonoSingleton<AudioManager>
+    public class AudioManager : MonoBehaviour
     {
+        public static AudioManager Instance = null;
+
         [SerializeField] AudioSource bgmSource, effectSource = null;
         public AudioSource BGMSource => bgmSource;
         public AudioSource EffectSource => effectSource;
@@ -14,8 +16,9 @@ namespace Core
 
         private void Awake()
         {
-            Initialize(true);
-
+            if(Instance == null) { Instance = this; DontDestroyOnLoad(transform.root.gameObject); }
+            else { Destroy(transform.root.gameObject); }
+            
             bV = PlayerPrefs.GetFloat("BGM", 0.5f);
             eV = PlayerPrefs.GetFloat("EFFECT", 0.5f); 
 
