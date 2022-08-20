@@ -18,6 +18,6 @@ public class SetMoney : MonoBehaviour
 
     public void DoSetText()
     {
-        tmp.text = DataManager.Instance.UserData.money.ToString();
+        tmp.text = DataManager.Instance.UserData.money.ToString() + "$";
     }
 }

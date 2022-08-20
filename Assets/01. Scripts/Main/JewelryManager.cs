@@ -21,7 +21,7 @@ public class JewelryManager : MonoSingleton<JewelryManager>
         GameObject obj = GameObject.Find("Canvas/OrderPanel/Jewelries");
         for(int i = 0; i < 9; i++)
         {
-            countTMP.Add(obj.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>());
+            countTMP.Add(obj.transform.GetChild(i).GetChild(1).GetComponent<TextMeshProUGUI>());
         }
     }
 
