@@ -14,7 +14,7 @@ using System.Collections.Generic;
         public void SetProcessor(int index)
         {
             foreach(Processing p in processingList)
-                p.Index = index;
+                p.SetIndex(index);
         }
 
         private void Update()
