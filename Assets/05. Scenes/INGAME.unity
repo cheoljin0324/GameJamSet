@@ -882,6 +882,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7c00a07a2e2fcae418cf523e4abb8954, type: 3}
   - {fileID: 21300000, guid: 98775f62c28244448814bdbaa0612bfd, type: 3}
   count: 2
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &80046920
 MonoBehaviour:
@@ -2769,6 +2770,141 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &345582261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345582262}
+  - component: {fileID: 345582264}
+  - component: {fileID: 345582263}
+  m_Layer: 5
+  m_Name: TimeText (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &345582262
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345582261}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1598085437}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -790, y: 458}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &345582263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345582261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 60
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: b223bee4977516949a8728143df2f667, type: 2}
+  m_sharedMaterial: {fileID: -2012521237142387593, guid: b223bee4977516949a8728143df2f667, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &345582264
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345582261}
+  m_CullTransparentMesh: 1
 --- !u!1 &372437536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,6 +3904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37bc59d92e8fdf84db2ef4b63d02664b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeText: {fileID: 345582263}
   customers:
   - {fileID: 21300000, guid: 5de3f33bb47bee6478543ad726aebd9a, type: 3}
   - {fileID: 21300000, guid: be1d3c1b99d3d9242807e804c73e7d30, type: 3}
@@ -4410,6 +4547,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8f61b663d4c082a438ba48b9e8b58713, type: 3}
   - {fileID: 21300000, guid: b9e22d1325cc47f46a1f689f166de1ec, type: 3}
   count: 8
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &559052261
 MonoBehaviour:
@@ -5004,6 +5142,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 81d8d7939e45e21428b08df34c785a01, type: 3}
   - {fileID: 21300000, guid: 6482af3849954fc409849b600c698ba3, type: 3}
   count: 1
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &597742198
 MonoBehaviour:
@@ -6047,6 +6186,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 98c1595b51d18bb448972cfb8fa55c9e, type: 3}
   - {fileID: 21300000, guid: 195ad46cb080a7a4584a82d2cc41eb08, type: 3}
   count: 4
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &677508485
 MonoBehaviour:
@@ -6212,6 +6352,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 61bd7687cd1f6514a9750e7e9fb65fec, type: 3}
   - {fileID: 21300000, guid: bea385c7bad511941a566107308d2f01, type: 3}
   count: 6
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &680846002
 MonoBehaviour:
@@ -10517,6 +10658,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: efb5915848ec86246885dd73b59d480f, type: 3}
   - {fileID: 21300000, guid: e1a2c8e30d3c1584b9237ccf4493c8cd, type: 3}
   count: 7
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &1367953275
 MonoBehaviour:
@@ -11290,6 +11432,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dbd436171d24e744ca32e4ef401788e9, type: 3}
   - {fileID: 21300000, guid: 88885fde9ebb87345ba5097a7b3d713e, type: 3}
   count: 0
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &1427959738
 MonoBehaviour:
@@ -12081,6 +12224,7 @@ RectTransform:
   - {fileID: 225815482}
   - {fileID: 1407229041}
   - {fileID: 1274974025}
+  - {fileID: 345582262}
   m_Father: {fileID: 629383662}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12606,6 +12750,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 42b14bf4a1e13d14ab6fd4a504d9d135, type: 3}
   - {fileID: 21300000, guid: 7ef314e860576144f8a0d2f3381ebe26, type: 3}
   count: 5
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &1727924195
 MonoBehaviour:
@@ -14616,6 +14761,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 15c441eb9c672fd4f9d150dbf002e5ee, type: 3}
   - {fileID: 21300000, guid: adaedf7005ca27145acca12c547436c8, type: 3}
   count: 3
+  state: 000000000000000000000000
   button: {fileID: 0}
 --- !u!114 &2072661906
 MonoBehaviour:

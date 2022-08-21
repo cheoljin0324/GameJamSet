@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class OrderManager : MonoSingleton<OrderManager>
 {
+    [SerializeField] TextMeshProUGUI timeText = null;
     [SerializeField] List<Sprite> customers = new List<Sprite>();
     [SerializeField] float dayTime = 600f;
     [SerializeField] UnityEvent doPopUp = null, doPopCustomer, doPopDayClearPanel;
@@ -39,6 +40,7 @@ public class OrderManager : MonoSingleton<OrderManager>
         if (JewelryManager.Instance.OnPreparing && !dayCleared) return;
 
         CurrentTime += Time.deltaTime;
+        timeText.text = Mathf.Max(0, Mathf.FloorToInt(dayTime - CurrentTime)).ToString();
 
         if (CurrentTime >= dayTime && !dayCleared && !onOrdering)
         {
@@ -47,7 +49,7 @@ public class OrderManager : MonoSingleton<OrderManager>
             //데이 클리어 패널 보여주기 데이터 매니저 + getfame , getmoney
         }
 
-        if (!onOrdering && CurrentTime < dayTime)
+        if (!onOrdering && !dayCleared && CurrentTime < dayTime)
         {
             Invoke("GetOrder", 3f);
             onOrdering = true;
@@ -56,6 +58,7 @@ public class OrderManager : MonoSingleton<OrderManager>
 
     public void CompareOrder()
     {
+        Debug.Log(Submit);
         if (Order == Submit)
         {
             int money = Order.Replace("0","").Length * 100;
@@ -79,6 +82,7 @@ public class OrderManager : MonoSingleton<OrderManager>
     
     private void GetOrder()
     {
+        CustomerCount++;
         customerImage.sprite = customers[Random.Range(0, customers.Count)];
         doPopCustomer?.Invoke();
         Invoke("MakeOrder", 1.5f);
@@ -132,6 +136,8 @@ public class OrderManager : MonoSingleton<OrderManager>
         {
             Order = "000000000000000000000000001";
         }
+
+        Debug.Log(Order);
     }
 
 }

@@ -30,6 +30,8 @@ namespace Core
         {
             foreach(AudioClip c in clipList)
                 clips.Add(c.name, c);
+
+            PlayBGM("Lets Go_BGM");
         }
 
         private void OnDisable()

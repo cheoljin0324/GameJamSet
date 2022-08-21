@@ -6,7 +6,7 @@ public class Processing : MonoBehaviour
 {
     [SerializeField] Sprite[] sprites;
     [SerializeField] int count;
-    private int[] state = { 0, 0, 0 };
+    public int[] state = { 0, 0, 0 };
     public Button button = null;
     private Image image = null;
     private MakingCoolTime ctime = null;
@@ -46,6 +46,8 @@ public class Processing : MonoBehaviour
 
     public int SendOutState(int index)
     {
-        return state[index];
+        int temp = state[index];
+        state[index] = 0;
+        return temp;
     }
 }
