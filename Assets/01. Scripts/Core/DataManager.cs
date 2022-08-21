@@ -31,7 +31,7 @@ namespace Core
         public static DataManager Instance = null;
 
         [SerializeField] TextAsset texts;
-        private UserData userData;
+        [SerializeField] UserData userData;
         public UserData UserData => userData;
         public Dictionary<string, string> Texts;
         private bool isClear = false;

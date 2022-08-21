@@ -12,8 +12,6 @@ public class DayReset : MonoBehaviour
         doSlideUp?.Invoke();
         rect.localPosition = new Vector3(0, -2000);
         jewelryPanel.localPosition = new Vector3(0, 0);
-        OrderManager.Instance.dayCleared = false;
-        OrderManager.Instance.CurrentTime = 0;
         dayClearPanel.SetActive(false);
     }
 }

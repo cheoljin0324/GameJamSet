@@ -10,7 +10,9 @@ public class DecreaseCoolTime : MonoBehaviour
     private void Start()
     {
         cntTMP = GetComponentInChildren<TextMeshProUGUI>();
-        cntTMP.text = ((Mathf.Pow(Mathf.FloorToInt((5 - DataManager.Instance.UserData.coolTimes[index]) / 0.5f), 2) + 10 - DataManager.Instance.UserData.coolTimes[index]) * 100) + "원";
+        int level = Mathf.FloorToInt((5 - DataManager.Instance.UserData.coolTimes[index]) / 0.5f);
+        float coolTime = DataManager.Instance.UserData.coolTimes[index];
+        cntTMP.text = ((Mathf.Pow(level, 2) + 10 - coolTime) * 100) + "원";
     }
 
     public void Upgrade()
@@ -36,6 +38,8 @@ public class DecreaseCoolTime : MonoBehaviour
 
         DataManager.Instance.UserData.coolTimes[index] -= 0.5f;
 
+        level = Mathf.FloorToInt((5 - DataManager.Instance.UserData.coolTimes[index]) / 0.5f);
+        coolTime = DataManager.Instance.UserData.coolTimes[index];
         cntTMP.text = (Mathf.Pow(level, 2) + 10 - coolTime) * 100 + "원";
     }
 }

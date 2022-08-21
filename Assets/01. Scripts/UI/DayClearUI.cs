@@ -61,9 +61,11 @@ public class DayClearUI : MonoBehaviour
     }
     public void ResetPos()
     {
+        transform.localPosition = new Vector3(0, -2000);
         foreach(var text in texts)
         {
             text.transform.localPosition -= new Vector3(100, 0);
+            text.alpha = 0;
         }
         OrderManager.Instance.dayCleared = false;
         transform.localPosition += new Vector3(100, 0);

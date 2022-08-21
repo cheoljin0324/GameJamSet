@@ -6,8 +6,10 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class OrderManager : MonoSingleton<OrderManager>
+public class OrderManager : MonoBehaviour
 {
+    public static OrderManager Instance = null;
+
     [SerializeField] TextMeshProUGUI timeText = null;
     [SerializeField] List<Sprite> customers = new List<Sprite>();
     [SerializeField] float dayTime = 600f;
@@ -29,6 +31,8 @@ public class OrderManager : MonoSingleton<OrderManager>
 
     private void Awake()
     {
+        if(Instance == null) Instance = this;
+
         customerImage = GameObject.Find("Canvas").transform.Find("Customer").GetComponent<Image>();
         orderPanel = GameObject.Find("Canvas").transform.Find("OrderPanel");
         requestTMP = orderPanel.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
