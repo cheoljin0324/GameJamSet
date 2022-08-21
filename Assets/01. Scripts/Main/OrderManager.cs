@@ -144,4 +144,8 @@ public class OrderManager : MonoBehaviour
         Debug.Log(Order);
     }
 
+    private void OnDisable()
+    {
+        if(Instance != null) Destroy(Instance);
+    }
 }

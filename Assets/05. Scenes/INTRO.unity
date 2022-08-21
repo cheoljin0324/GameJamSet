@@ -2431,7 +2431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: "\uC774\uB984\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 083dd0c6b33000e4fa9ebfbc532c34a3, type: 2}
   m_sharedMaterial: {fileID: 8710962703133007121, guid: 083dd0c6b33000e4fa9ebfbc532c34a3, type: 2}
@@ -5480,6 +5480,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texts: {fileID: 4900000, guid: 83dc6411cd23cb04e96fef0bd3fd3932, type: 3}
+  userData:
+    name: 
+    fame: 0
+    day: 0
+    money: 0
+    coolTimes: []
+    bag: 0
 --- !u!1 &1861950248
 GameObject:
   m_ObjectHideFlags: 0
