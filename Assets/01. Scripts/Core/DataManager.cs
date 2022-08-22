@@ -34,7 +34,6 @@ namespace Core
         [SerializeField] UserData userData;
         public UserData UserData => userData;
         public Dictionary<string, string> Texts;
-        private bool isClear = false;
 
         public void Awake()
         {
@@ -69,6 +68,7 @@ namespace Core
         {
             string JSON = JsonConvert.SerializeObject(userData);
             PlayerPrefs.SetString("UserData", JSON);
+            PlayerPrefs.Save();
         }
     }
 }
