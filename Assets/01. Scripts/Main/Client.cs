@@ -91,14 +91,14 @@ public class Client : MonoBehaviour
         int i = 0;
         foreach (string name in leaderBoard.Keys)
         {
-            if (i >= 5) break;
+            if (i >= 6) break;
             nameTMP.text += name + "\n";
             i++;
         }
         i = 0;
         foreach (int fame in leaderBoard.Values)
         {
-            if (i >= 5) break;
+            if (i >= 6) break;
             fameTMP.text += "명성도 : " + fame + "\n";
             i++;
         }

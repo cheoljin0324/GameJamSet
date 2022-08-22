@@ -19,6 +19,8 @@ public class SetName : MonoBehaviour
     {
         if(DataManager.Instance.UserData.name == "")
             nameSettingPanel.SetActive(true);
+        else
+            nameSettingPanel.SetActive(false);
     }
 
     public void NameSet()

@@ -56,6 +56,15 @@ namespace Core
             SaveFile();
         }
 
+        private void OnDestroy()
+        {
+            SaveFile();
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveFile();   
+        }
         public void SaveFile()
         {
             string JSON = JsonConvert.SerializeObject(userData);
